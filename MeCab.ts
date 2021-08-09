@@ -12,7 +12,6 @@ export class MeCab {
     this.options = options;
   }
 
-
   private async runCommand(text: string, cmdArgs?: string[]): Promise<string> {
     const options: Deno.RunOptions = {
       cmd: (cmdArgs ? this.cmd.concat(cmdArgs) : this.cmd),
@@ -55,6 +54,18 @@ export class MeCab {
     const editedResult = result.split(" ");
     editedResult.pop();
 
+    return editedResult;
+  }
+
+  async yomi(text: string): Promise<string> {
+    let result: string;
+    try {
+      result = await this.runCommand(text, ['-Oyomi']);
+    } catch(err) {
+      throw new Error(`Failed to run MeCab correctly: ${err.message}`);
+    }
+
+    const editedResult = result.replace(/\n/g, "");
     return editedResult;
   }
 }

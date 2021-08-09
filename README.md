@@ -9,4 +9,4 @@ deno-mecab is an asynchronous Japanese morphological analysis module using MeCab
 - [ ] Parse (形態素解析)
 - [ ] Chasen (形態素解析 - Chasen互換)
 - [x] Wakati (分かち書き)
-- [ ] Yomi (読みがなふり)
+- [x] Yomi (読み付与)
