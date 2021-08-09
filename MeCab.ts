@@ -19,7 +19,6 @@ export class MeCab {
       cwd: this.options?.cwd,
       env: this.options?.env,
       stdout: "piped",
-      stderr: "piped",
       stdin: "piped",
     };
 
@@ -31,19 +30,14 @@ export class MeCab {
     await process.stdin?.write(encoder.encode(text));
     process.stdin?.close();
 
-    const [{ code }, stdout, stderr] = await Promise.all([
+    const [{ code }, stdout] = await Promise.all([
       process.status(),
       process.output(),
-      process.stderrOutput()
     ]);
 
     // Check process exited with exit code 0
     if(code !== 0) {
-      if(stdout !== new Uint8Array([])) {
-        throw stderr;
-      } else {
         throw stdout;
-      }
     }
 
     const decodedOutput = decoder.decode(stdout);
