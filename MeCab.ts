@@ -17,6 +17,15 @@ export class MeCab {
   }
 
   /**
+   * Generate error message
+   *
+   * Format: "Failed to run MeCab correctly: ${message}"
+   */
+  static generateMeCabRunError(message: string): Error {
+    return new Error(`Failed to run MeCab correctly: ${message}`);
+  }
+
+  /**
    * Run MeCab(cmd)
    * @param cmdArgs After cmd args (e.g. -Ochasen)
    */
@@ -61,7 +70,12 @@ export class MeCab {
    */
   async parse(text: string): Promise<string[][]> {
     // Run MeCab
-    const result = await this.runMeCab(text);
+    let result: string;
+    try {
+      result = await this.runMeCab(text);
+    } catch(err) {
+      throw MeCab.generateMeCabRunError(err);
+    }
     // Remove not needed symbol
     const splitedResult = result.replace(/\nEOS\n/, '').split("\n");
     const parsedResult = [];
@@ -80,7 +94,12 @@ export class MeCab {
    */
   async dump(text: string): Promise<string[][]> {
     // Run MeCab
-    const result = await this.runMeCab(text, ["-Odump"]);
+    let result: string;
+    try {
+      result = await this.runMeCab(text, ["-Odump"]);
+    } catch(err) {
+      throw MeCab.generateMeCabRunError(err.message);
+    }
 
     // Remove not needed symbol
     const splitedResult = result.replace(/\n$/, '').split("\n");
@@ -104,7 +123,12 @@ export class MeCab {
    */
   async chasen(text: string, includeSpaces?: boolean): Promise<string[][]> {
     // Run MeCab
-    const result = await this.runMeCab(text, includeSpaces ? ["-Ochasen2"] : ["-Ochasen"]);
+    let result: string;
+    try {
+      result = await this.runMeCab(text, includeSpaces ? ["-Ochasen2"] : ["-Ochasen"]);
+    } catch(err) {
+      throw MeCab.generateMeCabRunError(err.message);
+    }
     // Remove not needed symbol
     const splitedResult = result.replace(/\nEOS\n/, '').split("\n");
     const parsedResult = [];
@@ -123,7 +147,12 @@ export class MeCab {
    */
   async simple(text: string): Promise<string[][]> {
     // Run MeCab
-    const result = await this.runMeCab(text, ["-Osimple"]);
+    let result: string;
+    try {
+      result = await this.runMeCab(text, ["-Osimple"]);
+    } catch(err) {
+      throw MeCab.generateMeCabRunError(err.message);
+    }
     // Remove not needed symbol
     const splitedResult = result.replace(/\nEOS\n/, '').split("\n");
     const parsedResult = [];
@@ -141,12 +170,12 @@ export class MeCab {
    * Word-separate text
    */
   async wakati(text: string): Promise<string[]> {
+    // Run MeCab
     let result: string;
     try {
-      // Run MeCab
       result = await this.runMeCab(text, ['-Owakati']);
     } catch(err) {
-      throw new Error(`Failed to run MeCab correctly: ${err.message}`);
+      throw MeCab.generateMeCabRunError(err.message);
     }
 
     // Edit result
@@ -160,12 +189,12 @@ export class MeCab {
    * Add reading to text
    */
   async yomi(text: string): Promise<string> {
+    // Run MeCab
     let result: string;
     try {
-      // Run MeCab
       result = await this.runMeCab(text, ['-Oyomi']);
     } catch(err) {
-      throw new Error(`Failed to run MeCab correctly: ${err.message}`);
+      throw MeCab.generateMeCabRunError(err.message);
     }
 
     // Edit result
