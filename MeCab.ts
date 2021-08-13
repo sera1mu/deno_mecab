@@ -109,7 +109,8 @@ export class MeCab {
     for (const line of splitedResult) {
       const splitedLine = line.split(" ");
       const splitedLineFeature: string[] = splitedLine[2].split(",");
-      let finallySplitedLine: any = splitedLine;
+      // deno-lint-ignore no-explicit-any
+      const finallySplitedLine: any = splitedLine;
       finallySplitedLine[2] = splitedLineFeature;
       parsedResult.push(finallySplitedLine);
     }
