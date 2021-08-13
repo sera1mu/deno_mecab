@@ -12,7 +12,7 @@ export class MeCab {
     this.options = options;
   }
 
-  private async runCommand(text: string, cmdArgs?: string[]): Promise<string> {
+  private async runMeCab(text: string, cmdArgs?: string[]): Promise<string> {
     const options: Deno.RunOptions = {
       cmd: (cmdArgs ? this.cmd.concat(cmdArgs) : this.cmd),
       cwd: this.options?.cwd,
@@ -43,10 +43,23 @@ export class MeCab {
     return decodedOutput;
   }
 
+  async parse(text: string): Promise<string[][]> {
+    const result = await this.runMeCab(text);
+    const splitedResult = result.replace(/\nEOS\n/, '').split("\n");
+    const parsedResult = [];
+
+    for(const line of splitedResult) {
+      const splitedLine = line.replace(/\t/, ",").split(",");
+      parsedResult.push(splitedLine);
+    }
+
+    return parsedResult;
+  }
+
   async wakati(text: string): Promise<string[]> {
     let result: string;
     try {
-      result = await this.runCommand(text, ['-Owakati']);
+      result = await this.runMeCab(text, ['-Owakati']);
     } catch(err) {
       throw new Error(`Failed to run MeCab correctly: ${err.message}`);
     }
@@ -60,7 +73,7 @@ export class MeCab {
   async yomi(text: string): Promise<string> {
     let result: string;
     try {
-      result = await this.runCommand(text, ['-Oyomi']);
+      result = await this.runMeCab(text, ['-Oyomi']);
     } catch(err) {
       throw new Error(`Failed to run MeCab correctly: ${err.message}`);
     }
