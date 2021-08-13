@@ -31,7 +31,7 @@ export class MeCab {
    */
   private async runMeCab(text: string, cmdArgs?: string[]): Promise<string> {
     const options: Deno.RunOptions = {
-      cmd: (cmdArgs ? this.cmd.concat(cmdArgs) : this.cmd),
+      cmd: cmdArgs ? this.cmd.concat(cmdArgs) : this.cmd,
       cwd: this.options?.cwd,
       env: this.options?.env,
       stdout: "piped",
@@ -54,6 +54,7 @@ export class MeCab {
       process.status(),
       process.output(),
     ]);
+    process.close();
 
     // Check process exited with exit code 0
     if (code !== 0) {
@@ -128,7 +129,7 @@ export class MeCab {
     try {
       result = await this.runMeCab(
         text,
-        includeSpaces ? ["-Ochasen2"] : ["-Ochasen"],
+        includeSpaces ? ["-Ochasen2"] : ["-Ochasen"]
       );
     } catch (err) {
       throw MeCab.generateMeCabRunError(err.message);
