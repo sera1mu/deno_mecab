@@ -72,6 +72,19 @@ export class MeCab {
     return parsedResult;
   }
 
+  async chasen(text: string, includeSpaces?: boolean): Promise<string[][]> {
+    const result = await this.runMeCab(text, includeSpaces ? ["-Ochasen2"] : ["-Ochasen"]);
+    const splitedResult = result.replace(/\nEOS\n/, '').split("\n");
+    const parsedResult = [];
+
+    for(const line of splitedResult) {
+      const splitedLine = line.replace(/\t/g, ",").split(",");
+      parsedResult.push(splitedLine);
+    }
+
+    return parsedResult;
+  }
+
   async wakati(text: string): Promise<string[]> {
     let result: string;
     try {
