@@ -85,6 +85,19 @@ export class MeCab {
     return parsedResult;
   }
 
+  async simple(text: string): Promise<string[][]> {
+    const result = await this.runMeCab(text, ["-Osimple"]);
+    const splitedResult = result.replace(/\nEOS\n/, '').split("\n");
+    const parsedResult = [];
+
+    for(const line of splitedResult) {
+      const splitedLine = line.replace(/\t/, ",").split(",");
+      parsedResult.push(splitedLine);
+    }
+
+    return parsedResult;
+  }
+
   async wakati(text: string): Promise<string[]> {
     let result: string;
     try {
