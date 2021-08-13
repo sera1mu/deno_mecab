@@ -56,6 +56,22 @@ export class MeCab {
     return parsedResult;
   }
 
+  async dump(text: string): Promise<string[][]> {
+    const result = await this.runMeCab(text, ["-Odump"]);
+    const splitedResult = result.replace(/\n$/, '').split("\n");
+    const parsedResult = [];
+
+    for(const line of splitedResult) {
+      const splitedLine = line.split(" ");
+      const splitedLineFeature: string[] = splitedLine[2].split(",");
+      let finallySplitedLine: any = splitedLine;
+      finallySplitedLine[2] = splitedLineFeature;
+      parsedResult.push(finallySplitedLine);
+    }
+
+    return parsedResult;
+  }
+
   async wakati(text: string): Promise<string[]> {
     let result: string;
     try {
