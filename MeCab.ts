@@ -1,6 +1,6 @@
 interface MeCabOptions {
   cwd?: string;
-  env?: { [key: string]: string; };
+  env?: { [key: string]: string };
 }
 
 export class MeCab {
@@ -56,8 +56,8 @@ export class MeCab {
     ]);
 
     // Check process exited with exit code 0
-    if(code !== 0) {
-        throw stdout;
+    if (code !== 0) {
+      throw stdout;
     }
 
     // Return process stdout
@@ -73,15 +73,15 @@ export class MeCab {
     let result: string;
     try {
       result = await this.runMeCab(text);
-    } catch(err) {
+    } catch (err) {
       throw MeCab.generateMeCabRunError(err);
     }
     // Remove not needed symbol
-    const splitedResult = result.replace(/\nEOS\n/, '').split("\n");
+    const splitedResult = result.replace(/\nEOS\n/, "").split("\n");
     const parsedResult = [];
 
     // Edit result
-    for(const line of splitedResult) {
+    for (const line of splitedResult) {
       const splitedLine = line.replace(/\t/, ",").split(",");
       parsedResult.push(splitedLine);
     }
@@ -97,16 +97,16 @@ export class MeCab {
     let result: string;
     try {
       result = await this.runMeCab(text, ["-Odump"]);
-    } catch(err) {
+    } catch (err) {
       throw MeCab.generateMeCabRunError(err.message);
     }
 
     // Remove not needed symbol
-    const splitedResult = result.replace(/\n$/, '').split("\n");
+    const splitedResult = result.replace(/\n$/, "").split("\n");
     const parsedResult = [];
 
     // Edit result
-    for(const line of splitedResult) {
+    for (const line of splitedResult) {
       const splitedLine = line.split(" ");
       const splitedLineFeature: string[] = splitedLine[2].split(",");
       let finallySplitedLine: any = splitedLine;
@@ -125,16 +125,19 @@ export class MeCab {
     // Run MeCab
     let result: string;
     try {
-      result = await this.runMeCab(text, includeSpaces ? ["-Ochasen2"] : ["-Ochasen"]);
-    } catch(err) {
+      result = await this.runMeCab(
+        text,
+        includeSpaces ? ["-Ochasen2"] : ["-Ochasen"],
+      );
+    } catch (err) {
       throw MeCab.generateMeCabRunError(err.message);
     }
     // Remove not needed symbol
-    const splitedResult = result.replace(/\nEOS\n/, '').split("\n");
+    const splitedResult = result.replace(/\nEOS\n/, "").split("\n");
     const parsedResult = [];
 
     // Edit result
-    for(const line of splitedResult) {
+    for (const line of splitedResult) {
       const splitedLine = line.replace(/\t/g, ",").split(",");
       parsedResult.push(splitedLine);
     }
@@ -150,15 +153,15 @@ export class MeCab {
     let result: string;
     try {
       result = await this.runMeCab(text, ["-Osimple"]);
-    } catch(err) {
+    } catch (err) {
       throw MeCab.generateMeCabRunError(err.message);
     }
     // Remove not needed symbol
-    const splitedResult = result.replace(/\nEOS\n/, '').split("\n");
+    const splitedResult = result.replace(/\nEOS\n/, "").split("\n");
     const parsedResult = [];
 
     // Edit result
-    for(const line of splitedResult) {
+    for (const line of splitedResult) {
       const splitedLine = line.replace(/\t/, ",").split(",");
       parsedResult.push(splitedLine);
     }
@@ -173,8 +176,8 @@ export class MeCab {
     // Run MeCab
     let result: string;
     try {
-      result = await this.runMeCab(text, ['-Owakati']);
-    } catch(err) {
+      result = await this.runMeCab(text, ["-Owakati"]);
+    } catch (err) {
       throw MeCab.generateMeCabRunError(err.message);
     }
 
@@ -192,8 +195,8 @@ export class MeCab {
     // Run MeCab
     let result: string;
     try {
-      result = await this.runMeCab(text, ['-Oyomi']);
-    } catch(err) {
+      result = await this.runMeCab(text, ["-Oyomi"]);
+    } catch (err) {
       throw MeCab.generateMeCabRunError(err.message);
     }
 
