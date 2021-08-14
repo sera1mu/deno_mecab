@@ -1,4 +1,4 @@
-name: Test
+name: Check code
 
 on:
   push:
@@ -8,11 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Setup repo
@@ -23,5 +19,8 @@ jobs:
         with:
           deno-version: v1.x
 
-      - name: Run test
-        run: deno test --allow-run
+      - name: Verify formatting
+        run: deno fmt --check
+
+      - name: Run linter
+        run: deno lint
