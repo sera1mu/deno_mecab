@@ -24,4 +24,14 @@ jobs:
           deno-version: v1.x
 
       - name: Run test
-        run: deno test --allow-run
+        run: deno test --allow-run --coverage=coverage
+
+      - name: Create lcov format coverage
+        run: deno coverage ./coverage --lcov > coverage.lcov
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.lcov
+          fail_ci_if_error: true
