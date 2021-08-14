@@ -24,3 +24,6 @@ jobs:
 
       - name: Run linter
         run: deno lint
+
+      - name: Run test
+        run: deno test --allow-run
