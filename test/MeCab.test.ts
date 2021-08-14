@@ -1,4 +1,4 @@
-import { MeCab } from "../MeCab.ts";
+import { MeCab } from "../src/MeCab.ts";
 import {
   assertEquals,
   assertStrictEquals,
