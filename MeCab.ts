@@ -203,7 +203,7 @@ export class MeCab {
     }
 
     // Edit result
-    const editedResult = result.replace(/\n/g, "");
+    const editedResult = result.replace(/ \n/g, "");
     return editedResult;
   }
 }
