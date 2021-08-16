@@ -26,11 +26,14 @@ jobs:
       - name: Run test
         run: deno test --allow-run --coverage=coverage
 
+      - name: Create lcov format coverage
+        run: deno coverage ./coverage --lcov > coverage.lcov
+
       - name: Upload coverage
         uses: paambaati/codeclimate-action@v2.7.5
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
-          coverageCommand: deno coverage ./coverage --lcov > coverage.lcov
+          coverageCommand: cat coverage.lcov
           coverageLocations: |
             ${{github.workspace}}/coverage.lcov:lcov
