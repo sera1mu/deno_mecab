@@ -11,6 +11,7 @@ import {
 
 const testDir = dirname(fromFileUrl(import.meta.url));
 const dummyMeCabPath = join(testDir, "dummyMeCab.ts");
+const cmd = ["deno", "run", dummyMeCabPath];
 
 Deno.test("MeCab: generateMeCabRunError", () => {
   const message = "This is a test.";
@@ -22,7 +23,7 @@ Deno.test("MeCab: generateMeCabRunError", () => {
 
 Deno.test("MeCab: parse", async () => {
   const text = "あいうえお";
-  const mecab = new MeCab([dummyMeCabPath]);
+  const mecab = new MeCab(cmd);
   const actual = await mecab.parse(text);
   const excepted = [["あいうえお"]];
 
@@ -31,7 +32,7 @@ Deno.test("MeCab: parse", async () => {
 
 Deno.test("MeCab: dump", async () => {
   const text = "あいうえお";
-  const mecab = new MeCab([dummyMeCabPath]);
+  const mecab = new MeCab(cmd);
   const actual = await mecab.dump(text);
   const excepted = [["0", "あいうえお", ["dummy", "*"]]];
 
@@ -40,7 +41,7 @@ Deno.test("MeCab: dump", async () => {
 
 Deno.test("MeCab: chasen (not included spaces)", async () => {
   const text = "あいうえお";
-  const mecab = new MeCab([dummyMeCabPath]);
+  const mecab = new MeCab(cmd);
   const actual = await mecab.chasen(text, false);
   const excepted = [["あいうえお"]];
 
@@ -49,7 +50,7 @@ Deno.test("MeCab: chasen (not included spaces)", async () => {
 
 Deno.test("MeCab: chasen (include spaces)", async () => {
   const text = "あいうえお";
-  const mecab = new MeCab([dummyMeCabPath]);
+  const mecab = new MeCab(cmd);
   const actual = await mecab.chasen(text, true);
   const excepted = [["あいうえお"]];
 
@@ -58,7 +59,7 @@ Deno.test("MeCab: chasen (include spaces)", async () => {
 
 Deno.test("MeCab: simple", async () => {
   const text = "あいうえお";
-  const mecab = new MeCab([dummyMeCabPath]);
+  const mecab = new MeCab(cmd);
   const actual = await mecab.simple(text);
   const excepted = [["あいうえお"]];
 
@@ -67,7 +68,7 @@ Deno.test("MeCab: simple", async () => {
 
 Deno.test("MeCab: wakati", async () => {
   const text = "あ いうえ お";
-  const mecab = new MeCab([dummyMeCabPath]);
+  const mecab = new MeCab(cmd);
   const actual = await mecab.wakati(text);
   const excepted = ["あ", "いうえ", "お"];
 
@@ -76,7 +77,7 @@ Deno.test("MeCab: wakati", async () => {
 
 Deno.test("MeCab: yomi", async () => {
   const text = "あいうえお";
-  const mecab = new MeCab([dummyMeCabPath]);
+  const mecab = new MeCab(cmd);
   const actual = await mecab.yomi(text);
   const excepted = "あいうえお";
 
