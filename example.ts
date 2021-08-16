@@ -1,4 +1,4 @@
-import { MeCab } from "./mod.ts";
+import { MeCab } from "https://deno.land/x/deno_mecab/mod.ts";
 
 const mecab = new MeCab(["mecab"]);
 
