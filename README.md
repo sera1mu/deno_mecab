@@ -65,7 +65,7 @@ console.log(await mecab.yomi("日本語"));
 
 ## Maintainer
 
-![@sera1mu](https://github.com/sera1mu)
+[@sera1mu](https://github.com/sera1mu)
 
 ## License
 
