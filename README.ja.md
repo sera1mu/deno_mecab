@@ -6,32 +6,31 @@
 [![Maintainability](https://img.shields.io/codeclimate/maintainability/sera1mu/deno-mecab?logo=Code%20Climate)](https://codeclimate.com/github/sera1mu/deno-mecab/maintainability)
 [![license](https://img.shields.io/github/license/sera1mu/deno-mecab)](https://github.com/sera1mu/deno-mecab/blob/main/LICENSE)
 
-### English | [日本語](https://github.com/sera1mu/deno-mecab/blob/main/README.ja.md)
+### [English](https://github.com/sera1mu/deno-mecab/blob/main/README.ja.md) | 日本語
 
-deno-mecab is an asynchronous Japanese morphological analysis module using
-MeCab.
+deno-mecabは、MeCabを用いた非同期の日本語形態素解析モジュールです。
 
 ## Getting Started
 
-**Currently, this module does not work on Windows. Please wait for resolution.**
+**現在このモジュールはWindowsでは動作しません。解決までお待ちください。**
 
 ### Dependencies
 
 - deno
 - mecab
 - mecab dictionary
-  - We recommend the use of `mecab-ipadic-neologd`.
+  - `mecab-ipadic-neologd` を使用することをおすすめします。
     (https://github.com/neologd/mecab-ipadic-neologd)
 
 ### Example
 
-For a quick example, run this:
+簡単な例として、これを実行してみましょう:
 
 ```
 deno run --allow-run https://deno.land/x/deno_mecab/example.ts
 ```
 
-A simple example:
+簡単な例:
 
 ```ts
 import { MeCab } from "https://deno.land/x/deno_mecab/mod.ts";
