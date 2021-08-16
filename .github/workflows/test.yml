@@ -27,9 +27,11 @@ jobs:
         run: deno test --allow-run --coverage=coverage
 
       - name: Create lcov format coverage
+        if: matrix.os != 'windows-latest'
         run: deno coverage ./coverage --lcov > coverage.lcov
 
       - name: Upload coverage
+        if: matrix.os != 'windows-latest'
         uses: paambaati/codeclimate-action@v2.7.5
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
