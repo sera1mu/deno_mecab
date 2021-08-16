@@ -13,8 +13,6 @@ MeCab.
 
 ## Getting Started
 
-**Currently, this module does not work on Windows. Please wait for resolution.**
-
 ### Dependencies
 
 - deno

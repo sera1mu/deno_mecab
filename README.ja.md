@@ -12,8 +12,6 @@ deno-mecabは、MeCabを用いた非同期の日本語形態素解析モジュ�
 
 ## Getting Started
 
-**現在このモジュールはWindowsでは動作しません。解決までお待ちください。**
-
 ### Dependencies
 
 - deno
