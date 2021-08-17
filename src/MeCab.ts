@@ -133,7 +133,7 @@ export class MeCab {
       result = await this.runMeCab(
         text,
         // If enabled includeSpaces, run -Ochasen2
-        includeSpaces ? ["-Ochasen2"] : ["-Ochasen"]
+        includeSpaces ? ["-Ochasen2"] : ["-Ochasen"],
       );
     } catch (err) {
       throw MeCab.generateMeCabRunError(err.message);
