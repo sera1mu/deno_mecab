@@ -78,12 +78,15 @@ export class MeCab {
       throw MeCab.generateMeCabRunError(err);
     }
     // Remove not needed symbol
-    const splitedResult = result.replace(/\nEOS\n/, "").split("\n");
+    const splitedResult = result
+      .replace(/\nEOS\n/, "")
+      .replace(/\t/g, ",")
+      .split("\n");
     const parsedResult = [];
 
     // Edit result
     for (const line of splitedResult) {
-      const splitedLine = line.replace(/\t/, ",").split(",");
+      const splitedLine = line.split(",");
       parsedResult.push(splitedLine);
     }
 
@@ -130,18 +133,21 @@ export class MeCab {
       result = await this.runMeCab(
         text,
         // If enabled includeSpaces, run -Ochasen2
-        includeSpaces ? ["-Ochasen2"] : ["-Ochasen"],
+        includeSpaces ? ["-Ochasen2"] : ["-Ochasen"]
       );
     } catch (err) {
       throw MeCab.generateMeCabRunError(err.message);
     }
     // Remove not needed symbol
-    const splitedResult = result.replace(/\nEOS\n/, "").split("\n");
+    const splitedResult = result
+      .replace(/\nEOS\n/, "")
+      .replace(/\t/g, ",")
+      .split("\n");
     const parsedResult = [];
 
     // Edit result
     for (const line of splitedResult) {
-      const splitedLine = line.replace(/\t/g, ",").split(",");
+      const splitedLine = line.split(",");
       parsedResult.push(splitedLine);
     }
 
@@ -160,12 +166,15 @@ export class MeCab {
       throw MeCab.generateMeCabRunError(err.message);
     }
     // Remove not needed symbol
-    const splitedResult = result.replace(/\nEOS\n/, "").split("\n");
+    const splitedResult = result
+      .replace(/\nEOS\n/, "")
+      .replace(/\t/g, ",")
+      .split("\n");
     const parsedResult = [];
 
     // Edit result
     for (const line of splitedResult) {
-      const splitedLine = line.replace(/\t/, ",").split(",");
+      const splitedLine = line.split(",");
       parsedResult.push(splitedLine);
     }
 
