@@ -202,65 +202,6 @@ export class MeCab {
   }
 
   /**
-   * Parse (morphological analysis) text in Chasen compatible
-   * @param includeSpaces Whether to ignore half-width spaces
-   */
-  async chasen(text: string, includeSpaces?: boolean): Promise<string[][]> {
-    // Run MeCab
-    let result: string;
-    try {
-      result = await this.runMeCab(
-        text,
-        // If enabled includeSpaces, run -Ochasen2
-        includeSpaces ? ["-Ochasen2"] : ["-Ochasen"],
-      );
-    } catch (err) {
-      throw MeCab.generateMeCabRunError(err.message);
-    }
-    // Remove not needed symbol
-    const splitedResult = result
-      .replace(/\nEOS\n/, "")
-      .replace(/\t/g, ",")
-      .split("\n");
-    const parsedResult = [];
-
-    // Edit result
-    for (const line of splitedResult) {
-      const splitedLine = line.split(",");
-      parsedResult.push(splitedLine);
-    }
-
-    return parsedResult;
-  }
-
-  /**
-   * Text parsing (morphological analysis) and outputting only morphemes and part of speech
-   */
-  async simple(text: string): Promise<string[][]> {
-    // Run MeCab
-    let result: string;
-    try {
-      result = await this.runMeCab(text, ["-Osimple"]);
-    } catch (err) {
-      throw MeCab.generateMeCabRunError(err.message);
-    }
-    // Remove not needed symbol
-    const splitedResult = result
-      .replace(/\nEOS\n/, "")
-      .replace(/\t/g, ",")
-      .split("\n");
-    const parsedResult = [];
-
-    // Edit result
-    for (const line of splitedResult) {
-      const splitedLine = line.split(",");
-      parsedResult.push(splitedLine);
-    }
-
-    return parsedResult;
-  }
-
-  /**
    * Word-separate text
    */
   async wakati(text: string): Promise<string[]> {

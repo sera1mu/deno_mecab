@@ -39,33 +39,6 @@ Deno.test("MeCab: dump", async () => {
   assertEquals(actual, excepted);
 });
 
-Deno.test("MeCab: chasen (not included spaces)", async () => {
-  const text = "あいうえお";
-  const mecab = new MeCab(cmd);
-  const actual = await mecab.chasen(text, false);
-  const excepted = [["あいうえお"]];
-
-  assertEquals(actual, excepted);
-});
-
-Deno.test("MeCab: chasen (include spaces)", async () => {
-  const text = "あいうえお";
-  const mecab = new MeCab(cmd);
-  const actual = await mecab.chasen(text, true);
-  const excepted = [["あいうえお"]];
-
-  assertEquals(actual, excepted);
-});
-
-Deno.test("MeCab: simple", async () => {
-  const text = "あいうえお";
-  const mecab = new MeCab(cmd);
-  const actual = await mecab.simple(text);
-  const excepted = [["あいうえお"]];
-
-  assertEquals(actual, excepted);
-});
-
 Deno.test("MeCab: wakati", async () => {
   const text = "あ いうえ お";
   const mecab = new MeCab(cmd);
