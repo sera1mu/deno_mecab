@@ -40,19 +40,11 @@ const text = "JavaScriptはとても楽しいです。";
 
 // Parse (形態素解析)
 console.log(await mecab.parse(text));
-// [["JavaScript","名詞","固有名詞","組織","*","*","*","*"],["は","助詞","係助詞","*","*","*","*","は","ハ","ワ"],["とても","副詞","助詞類接続","*","*","*","*","とても","トテモ","トテモ"] ...
+// [{surface: "JavaScript", feature: "名詞", featureDetails: [ "固有名詞", "組織", "*" ], ...
 
 // Dump (ダンプ出力)
 console.log(await mecab.dump(text));
-// [["0","BOS",["BOS/EOS","*","*","*","*","*","*","*","*"],"0","0","0","0","0","0","2","1","0.000000","0.000000","0.000000","0"],["3","JavaScript",["名詞","固有名詞","組織","*","*","*","*"],"0","10","1292" ...
-
-// Chasen (Chasen互換)
-console.log(await mecab.chasen(text));
-// [["JavaScript","JavaScript","JavaScript","名詞-固有名詞-組織","",""],["は","ハ","は","助詞-係助詞","",""],["とても","トテモ","とても","副詞-助詞類接続","",""] ...
-
-// Simple (品詞のみ出力)
-console.log(await mecab.simple(text));
-// [["は","助詞-係助詞"],["とても","副詞-助詞類接続"],["楽しい","形容詞-自立"],["です","助動詞"],["。","記号-句点"]];
+// [{nodeId: 0, surface: "BOS", feature: "BOS/EOS", featureDetails: [ "*", "*", "*" ], ...
 
 // Wakati (わかち書き)
 console.log(await mecab.wakati("JavaScriptはとても楽しいです。"));

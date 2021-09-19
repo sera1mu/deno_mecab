@@ -30,14 +30,6 @@ const run = async () => {
     await mecab.dump(parseText);
   });
 
-  result.chasen = await measureTime("chasen", async () => {
-    await mecab.chasen(parseText);
-  });
-
-  result.simple = await measureTime("simple", async () => {
-    await mecab.simple(parseText);
-  });
-
   result.wakati = await measureTime("wakati", async () => {
     await mecab.wakati(parseText);
   });
@@ -75,8 +67,6 @@ const main = async () => {
   const total: Record<string, number> = {
     parse: 0,
     dump: 0,
-    chasen: 0,
-    simple: 0,
     wakati: 0,
     yomi: 0,
   };
@@ -89,8 +79,6 @@ const main = async () => {
   const average: Record<string, number> = {
     parse: 0,
     dump: 0,
-    chasen: 0,
-    simple: 0,
     wakati: 0,
     yomi: 0,
   };
