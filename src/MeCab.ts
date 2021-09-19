@@ -15,9 +15,9 @@ interface ParsedWord {
   // 7
   originalForm: string;
   // 8
-  reading: string;
+  reading?: string;
   // 9
-  pronunciation: string;
+  pronunciation?: string;
 }
 
 interface ParsedDumpWord extends ParsedWord {
