@@ -25,11 +25,5 @@ jobs:
           EGGS_TOKEN: ${{secrets.EGGS_TOKEN}}
         run: eggs link "$EGGS_TOKEN"
 
-      - name: Get tag version
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-
       - name: Publish
-        env:
-          RELEASE_VERSION: ${{steps.vars.outputs.tag}}
-        run: |
-          eggs publish --version $RELEASE_VERSION
+        run: eggs publish --version $RELEASE_VERSION
