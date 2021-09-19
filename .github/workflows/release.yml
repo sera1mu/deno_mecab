@@ -26,4 +26,4 @@ jobs:
         run: eggs link "$EGGS_TOKEN"
 
       - name: Publish
-        run: eggs publish --version $RELEASE_VERSION
+        run: eggs publish
