@@ -1,6 +1,6 @@
 {
   "$schema": "https://x.nest.land/eggs@0.3.9/src/schema.json",
-  "name": "deno-mecab",
+  "name": "deno_mecab",
   "entry": "./mod.ts",
   "description": "An asynchronous Japanese morphological analysis module using MeCab",
   "homepage": "https://doc.deno.land/https/deno.land/x/deno_mecab/mod.ts",
