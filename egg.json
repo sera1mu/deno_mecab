@@ -4,7 +4,7 @@
   "entry": "./mod.ts",
   "description": "An asynchronous Japanese morphological analysis module using MeCab",
   "homepage": "https://doc.deno.land/https/deno.land/x/deno_mecab/mod.ts",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "unstable": false,
   "unlisted": false,
   "files": [
