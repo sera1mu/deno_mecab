@@ -27,12 +27,12 @@ Deno.test("MeCab: parse", async () => {
   const actual = await mecab.parse(text);
   const excepted = [{
     surface: text,
-    feature: 'dummy',
-    featureDetails: ['*','*','*'],
-    conjugationForms: ['*', '*'],
-    originalForm: '*',
-    reading: '*',
-    pronunciation: '*',
+    feature: "dummy",
+    featureDetails: ["*", "*", "*"],
+    conjugationForms: ["*", "*"],
+    originalForm: "*",
+    reading: "*",
+    pronunciation: "*",
   }];
 
   assertEquals(actual, excepted);
@@ -45,12 +45,12 @@ Deno.test("MeCab: dump", async () => {
   const excepted = [{
     nodeId: 0,
     surface: text,
-    feature: 'dummy',
-    featureDetails: ['*','*','*'],
-    conjugationForms: ['*', '*'],
-    originalForm: '*',
-    reading: '*',
-    pronunciation: '*',
+    feature: "dummy",
+    featureDetails: ["*", "*", "*"],
+    conjugationForms: ["*", "*"],
+    originalForm: "*",
+    reading: "*",
+    pronunciation: "*",
     characterStartByte: 0,
     characterEndByte: 0,
     rcAttr: 0,
@@ -62,7 +62,7 @@ Deno.test("MeCab: dump", async () => {
     alpha: 0,
     beta: 0,
     prob: 0,
-    cost: 1
+    cost: 1,
   }];
 
   assertEquals(actual, excepted);
