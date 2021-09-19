@@ -1,0 +1,22 @@
+{
+  "$schema": "https://x.nest.land/eggs@0.3.9/src/schema.json",
+  "name": "deno-mecab",
+  "entry": "./mod.ts",
+  "description": "An asynchronous Japanese morphological analysis module using MeCab",
+  "homepage": "https://doc.deno.land/https/deno.land/x/deno_mecab/mod.ts",
+  "version": "1.1.0",
+  "unstable": false,
+  "unlisted": false,
+  "files": [
+    "./src/**/*",
+    "./mod.ts",
+    "LICENSE",
+    "README.md",
+    "README.ja.md"
+  ],
+  "ignore": [],
+  "checkFormat": false,
+  "checkTests": false,
+  "checkInstallation": false,
+  "check": true
+}
