@@ -45,14 +45,6 @@ console.log(await mecab.parse(text));
 console.log(await mecab.dump(text));
 // [{nodeId: 0, surface: "BOS", feature: "BOS/EOS", featureDetails: [ "*", "*", "*" ], ...
 
-// Chasen (Chasen互換)
-console.log(await mecab.chasen(text));
-// [["JavaScript","JavaScript","JavaScript","名詞-固有名詞-組織","",""],["は","ハ","は","助詞-係助詞","",""],["とても","トテモ","とても","副詞-助詞類接続","",""] ...
-
-// Simple (品詞のみ出力)
-console.log(await mecab.simple(text));
-// [["は","助詞-係助詞"],["とても","副詞-助詞類接続"],["楽しい","形容詞-自立"],["です","助動詞"],["。","記号-句点"]];
-
 // Wakati (わかち書き)
 console.log(await mecab.wakati("JavaScriptはとても楽しいです。"));
 // [ "JavaScript", "は", "とても", "楽しい", "です", "。" ]
