@@ -117,7 +117,6 @@ export class MeCab {
     return decodedOutput;
   }
 
-
   /**
    * Parse text.
    * Requires `allow-run` permission.
