@@ -1,3 +1,4 @@
+/** Advanced execution options of MeCab */
 interface MeCabOptions {
   cwd?: string;
   env?: { [key: string]: string };
@@ -51,31 +52,33 @@ interface ParsedDumpWord extends ParsedWord {
   cost: number;
 }
 
+/**
+ * Run and parse text with MeCab.
+ *
+ * Requires `allow-run` permission.
+ */
 export class MeCab {
   private cmd: string[];
   private options?: MeCabOptions;
 
-  /**
-   * @param cmd Command (Usually the path to the executable)
-   * @param options Running options
-   */
   constructor(cmd: string[], options?: MeCabOptions) {
     this.cmd = cmd;
     this.options = options;
   }
 
   /**
-   * Generate error message
+   * Generate error message.
    *
-   * Format: "Failed to run MeCab correctly: ${message}"
+   * Format: `Failed to run MeCab correctly: ${message}`
    */
   static generateMeCabRunError(message: string): Error {
     return new Error(`Failed to run MeCab correctly: ${message}`);
   }
 
   /**
-   * Run MeCab(cmd)
-   * @param cmdArgs After cmd args (e.g. -Ochasen)
+   * Run MeCab (the cmd specified by the constructor).
+   *
+   * Requires `allow-run` permission.
    */
   private async runMeCab(text: string, cmdArgs?: string[]): Promise<string> {
     const options: Deno.RunOptions = {
@@ -114,8 +117,10 @@ export class MeCab {
     return decodedOutput;
   }
 
+
   /**
-   * Parse (morphological analysis) text
+   * Parse text.
+   * Requires `allow-run` permission.
    */
   async parse(text: string): Promise<ParsedWord[]> {
     // Run MeCab
@@ -150,7 +155,8 @@ export class MeCab {
   }
 
   /**
-   * Get a dump of text
+   * Get a dump of text.
+   * Requires `allow-run` permission.
    */
   async dump(text: string): Promise<ParsedDumpWord[]> {
     // Run MeCab
@@ -202,7 +208,8 @@ export class MeCab {
   }
 
   /**
-   * Word-separate text
+   * Word-separate text.
+   * Requires `allow-run` permission.
    */
   async wakati(text: string): Promise<string[]> {
     // Run MeCab
@@ -221,7 +228,8 @@ export class MeCab {
   }
 
   /**
-   * Add reading to text
+   * Add reading to text.
+   * Requires `allow-run` permission.
    */
   async yomi(text: string): Promise<string> {
     // Run MeCab
