@@ -1,4 +1,4 @@
-# deno-mecab
+# deno_mecab
 
 [![Test](https://img.shields.io/github/workflow/status/sera1mu/deno-mecab/Test?label=Test&logo=github&logoColor=silver)](https://github.com/sera1mu/deno-mecab/actions/workflows/test.yml)
 [![Lint](https://img.shields.io/github/workflow/status/sera1mu/deno-mecab/Lint?label=Lint&logo=github&logoColor=silver)](https://github.com/sera1mu/deno-mecab/actions/workflows/check-code.yml)
@@ -8,7 +8,7 @@
 
 ### [English](https://github.com/sera1mu/deno-mecab/blob/main/README.ja.md) | 日本語
 
-deno-mecabは、MeCabを用いた非同期の日本語形態素解析モジュールです。
+deno_mecabは、MeCabを用いた非同期の日本語形態素解析モジュールです。
 
 ## Getting Started
 
