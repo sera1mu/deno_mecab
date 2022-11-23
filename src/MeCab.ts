@@ -57,7 +57,7 @@ interface ParsedDumpWord extends ParsedWord {
  *
  * Requires `allow-run` permission.
  */
-export class MeCab {
+export default class MeCab {
   private cmd: string[];
   private options?: MeCabOptions;
 

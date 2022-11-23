@@ -1,1 +1,1 @@
-export { MeCab } from "./src/MeCab.ts";
+export * from "./src/MeCab.ts";

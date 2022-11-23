@@ -1,4 +1,4 @@
-import { MeCab } from "../src/MeCab.ts";
+import MeCab from "../src/MeCab.ts";
 
 const measureTime = async (label: string, fn: () => Promise<void>) => {
   console.log("Start:", label);
