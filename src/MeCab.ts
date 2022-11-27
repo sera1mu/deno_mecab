@@ -15,15 +15,6 @@ export default class MeCab {
   }
 
   /**
-   * Generate error message.
-   *
-   * Format: `Failed to run MeCab correctly: ${message}`
-   */
-  static generateMeCabRunError(message: string): Error {
-    return new Error(`Failed to run MeCab correctly: ${message}`);
-  }
-
-  /**
    * Run MeCab (the cmd specified by the constructor).
    *
    * Requires `allow-run` permission.
@@ -71,9 +62,7 @@ export default class MeCab {
    */
   async parse(text: string): Promise<ParsedWord[]> {
     // Run MeCab
-    const result = await this.runMeCab(text).catch((err) => {
-      throw MeCab.generateMeCabRunError(err);
-    });
+    const result = await this.runMeCab(text);
 
     // Remove not needed symbol
     const splitedResult = result
@@ -105,10 +94,7 @@ export default class MeCab {
    */
   async dump(text: string): Promise<ParsedDumpWord[]> {
     // Run MeCab
-
-    const result = await this.runMeCab(text, ["-Odump"]).catch((err) => {
-      throw MeCab.generateMeCabRunError(err);
-    });
+    const result = await this.runMeCab(text, ["-Odump"]);
 
     // Remove not needed symbol
     const splitedResult = result.replace(/\n$/, "").split("\n");
@@ -156,9 +142,7 @@ export default class MeCab {
    */
   async wakati(text: string): Promise<string[]> {
     // Run MeCab
-    const result = await this.runMeCab(text, ["-Owakati"]).catch((err) => {
-      throw MeCab.generateMeCabRunError(err);
-    });
+    const result = await this.runMeCab(text, ["-Owakati"]);
 
     // Edit result
     const editedResult = result.split(" ");
@@ -173,9 +157,7 @@ export default class MeCab {
    */
   async yomi(text: string): Promise<string> {
     // Run MeCab
-    const result = await this.runMeCab(text, ["-Oyomi"]).catch((err) => {
-      throw MeCab.generateMeCabRunError(err);
-    });
+    const result = await this.runMeCab(text, ["-Oyomi"]);
 
     // Edit result
     const editedResult = result.replace(/ \n/g, "");

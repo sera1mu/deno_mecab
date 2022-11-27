@@ -13,14 +13,6 @@ const testDir = dirname(fromFileUrl(import.meta.url));
 const dummyMeCabPath = join(testDir, "dummyMeCab.ts");
 const cmd = ["deno", "run", dummyMeCabPath];
 
-Deno.test("MeCab: generateMeCabRunError", () => {
-  const message = "This is a test.";
-  const actual = MeCab.generateMeCabRunError(message);
-  const excepted = new Error(`Failed to run MeCab correctly: ${message}`);
-
-  assertStrictEquals(actual.message, excepted.message);
-});
-
 Deno.test("MeCab: parse", async () => {
   const text = "あいうえお";
   const mecab = new MeCab(cmd);
