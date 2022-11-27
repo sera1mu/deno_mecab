@@ -71,12 +71,10 @@ export default class MeCab {
    */
   async parse(text: string): Promise<ParsedWord[]> {
     // Run MeCab
-    let result: string;
-    try {
-      result = await this.runMeCab(text);
-    } catch (err) {
+    const result = await this.runMeCab(text).catch((err) => {
       throw MeCab.generateMeCabRunError(err);
-    }
+    });
+
     // Remove not needed symbol
     const splitedResult = result
       .replace(/\nEOS\n/, "")
@@ -107,12 +105,10 @@ export default class MeCab {
    */
   async dump(text: string): Promise<ParsedDumpWord[]> {
     // Run MeCab
-    let result: string;
-    try {
-      result = await this.runMeCab(text, ["-Odump"]);
-    } catch (err) {
-      throw MeCab.generateMeCabRunError(err.message);
-    }
+
+    const result = await this.runMeCab(text, ["-Odump"]).catch((err) => {
+      throw MeCab.generateMeCabRunError(err);
+    });
 
     // Remove not needed symbol
     const splitedResult = result.replace(/\n$/, "").split("\n");
@@ -160,12 +156,9 @@ export default class MeCab {
    */
   async wakati(text: string): Promise<string[]> {
     // Run MeCab
-    let result: string;
-    try {
-      result = await this.runMeCab(text, ["-Owakati"]);
-    } catch (err) {
-      throw MeCab.generateMeCabRunError(err.message);
-    }
+    const result = await this.runMeCab(text, ["-Owakati"]).catch((err) => {
+      throw MeCab.generateMeCabRunError(err);
+    });
 
     // Edit result
     const editedResult = result.split(" ");
@@ -180,12 +173,9 @@ export default class MeCab {
    */
   async yomi(text: string): Promise<string> {
     // Run MeCab
-    let result: string;
-    try {
-      result = await this.runMeCab(text, ["-Oyomi"]);
-    } catch (err) {
-      throw MeCab.generateMeCabRunError(err.message);
-    }
+    const result = await this.runMeCab(text, ["-Oyomi"]).catch((err) => {
+      throw MeCab.generateMeCabRunError(err);
+    });
 
     // Edit result
     const editedResult = result.replace(/ \n/g, "");
