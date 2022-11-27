@@ -13,13 +13,14 @@ MeCab.
 
 ## Getting Started
 
-### Dependencies
+### Requirements
 
-- deno
-- mecab
-- mecab dictionary
-  - We recommend the use of `mecab-ipadic-neologd`.
-    (https://github.com/neologd/mecab-ipadic-neologd)
+- [Deno](https://deno.land)
+- [MeCab](https://taku910.github.io/mecab/)
+- MeCab Dictionary
+  - [mecab-ipadic](https://github.com/taku910/mecab/tree/master/mecab-ipadic)
+  - [mecab-jumandic](https://github.com/taku910/mecab/tree/master/mecab-jumandic)
+  - [mecab-ipadic-neologd](https://github.com/neologd/mecab-ipadic-neologd)
 
 ### Example
 
