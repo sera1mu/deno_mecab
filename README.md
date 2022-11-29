@@ -30,7 +30,7 @@ For a quick example, run this:
 deno run --allow-run https://deno.land/x/deno_mecab/example.ts
 ```
 
-A simple example:
+The script to be execute:
 
 ```ts
 import { MeCab } from "https://deno.land/x/deno_mecab/mod.ts";

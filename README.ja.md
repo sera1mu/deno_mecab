@@ -23,13 +23,13 @@ deno_mecabは、MeCabを用いた非同期の日本語形態素解析モジュ�
 
 ### Example
 
-簡単な例として、これを実行してみましょう:
+簡単な例として、これを実行してみてください:
 
 ```
 deno run --allow-run https://deno.land/x/deno_mecab/example.ts
 ```
 
-簡単な例:
+実行されるスクリプト:
 
 ```ts
 import { MeCab } from "https://deno.land/x/deno_mecab/mod.ts";
