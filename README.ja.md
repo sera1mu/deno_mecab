@@ -12,13 +12,14 @@ deno_mecabは、MeCabを用いた非同期の日本語形態素解析モジュ�
 
 ## Getting Started
 
-### Dependencies
+### Requirements
 
-- deno
-- mecab
-- mecab dictionary
-  - `mecab-ipadic-neologd` を使用することをおすすめします。
-    (https://github.com/neologd/mecab-ipadic-neologd)
+- [Deno](https://deno.land)
+- [MeCab](https://taku910.github.io/mecab/)
+- MeCab 辞書
+  - [mecab-ipadic](https://github.com/taku910/mecab/tree/master/mecab-ipadic)
+  - [mecab-jumandic](https://github.com/taku910/mecab/tree/master/mecab-jumandic)
+  - [mecab-ipadic-neologd](https://github.com/neologd/mecab-ipadic-neologd)
 
 ### Example
 
