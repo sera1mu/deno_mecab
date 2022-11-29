@@ -8,7 +8,7 @@
 
 ### English | [日本語](https://github.com/sera1mu/deno-mecab/blob/main/README.ja.md)
 
-deno-mecab is an asynchronous Japanese morphological analysis module using
+deno_mecab is an asynchronous Japanese morphological analysis module using
 MeCab.
 
 ## Getting Started
@@ -33,7 +33,7 @@ deno run --allow-run https://deno.land/x/deno_mecab/example.ts
 The script to be execute:
 
 ```ts
-import { MeCab } from "https://deno.land/x/deno_mecab/mod.ts";
+import MeCab from "https://deno.land/x/deno_mecab@v1.2.2/mod.ts";
 
 const mecab = new MeCab(["mecab"]);
 
