@@ -6,8 +6,8 @@ import { MeCabOptions, ParsedDumpWord, ParsedWord } from "./types.ts";
  * Requires `allow-run` permission.
  */
 export default class MeCab {
-  private cmd: string[];
-  private options?: MeCabOptions;
+  private readonly cmd: string[];
+  private readonly options?: MeCabOptions;
 
   constructor(cmd: string[], options?: MeCabOptions) {
     this.cmd = cmd;
@@ -46,8 +46,7 @@ export default class MeCab {
       );
     }
 
-    const decodedOutput = new TextDecoder().decode(stdout);
-    return decodedOutput;
+    return new TextDecoder().decode(stdout);
   }
 
   /**
@@ -89,11 +88,11 @@ export default class MeCab {
     const result = await this.runMeCab(text, ["-Odump"]);
 
     // Remove not needed symbol
-    const splitedResult = result.replace(/\n$/, "").split("\n");
+    const splitedLines = result.replace(/\n$/, "").split("\n");
 
     const parsedWords: ParsedDumpWord[] = [];
 
-    for (const line of splitedResult) {
+    for (const line of splitedLines) {
       const splitedLine = line.split(" ");
       const splitedLineFeature = splitedLine[2].split(",");
       const word: ParsedDumpWord = {
