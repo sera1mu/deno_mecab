@@ -1,7 +1,7 @@
 import { MeCabOptions, ParsedDumpWord, ParsedWord } from "./types.ts";
 
 /**
- * Run and parse text with MeCab.
+ * The wrapper of MeCab.
  *
  * Requires `allow-run` permission.
  */
@@ -15,7 +15,7 @@ export default class MeCab {
   }
 
   /**
-   * Run MeCab (the cmd specified by the constructor).
+   * Run MeCab and return stdout.
    *
    * Requires `allow-run` permission.
    */
@@ -51,6 +51,7 @@ export default class MeCab {
 
   /**
    * Parse text.
+   *
    * Requires `allow-run` permission.
    */
   async parse(text: string): Promise<ParsedWord[]> {
@@ -82,6 +83,7 @@ export default class MeCab {
 
   /**
    * Get a dump of text.
+   *
    * Requires `allow-run` permission.
    */
   async dump(text: string): Promise<ParsedDumpWord[]> {
@@ -128,7 +130,8 @@ export default class MeCab {
   }
 
   /**
-   * Word-separate text.
+   * Split text into words.
+   *
    * Requires `allow-run` permission.
    */
   async wakati(text: string): Promise<string[]> {
@@ -142,6 +145,7 @@ export default class MeCab {
 
   /**
    * Add reading to text.
+   *
    * Requires `allow-run` permission.
    */
   async yomi(text: string): Promise<string> {
