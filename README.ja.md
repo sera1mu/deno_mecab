@@ -6,7 +6,7 @@
 [![Maintainability](https://img.shields.io/codeclimate/maintainability/sera1mu/deno-mecab?logo=Code%20Climate)](https://codeclimate.com/github/sera1mu/deno-mecab/maintainability)
 [![license](https://img.shields.io/github/license/sera1mu/deno-mecab)](https://github.com/sera1mu/deno-mecab/blob/main/LICENSE)
 
-### [English](https://github.com/sera1mu/deno-mecab/blob/main/README.ja.md) | 日本語
+### [English](https://github.com/sera1mu/deno-mecab/blob/main/README.md) | 日本語
 
 deno_mecabは、MeCabを用いた非同期の日本語形態素解析モジュールです。
 
