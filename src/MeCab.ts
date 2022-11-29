@@ -41,7 +41,9 @@ export default class MeCab {
     process.close();
 
     if (code !== 0) {
-      throw stdout;
+      throw new Error(
+        `MeCab exited with code ${code}. MeCab stdout: ${stdout}`,
+      );
     }
 
     const decodedOutput = new TextDecoder().decode(stdout);
