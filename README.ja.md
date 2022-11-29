@@ -32,7 +32,7 @@ deno run --allow-run https://deno.land/x/deno_mecab/example.ts
 実行されるスクリプト:
 
 ```ts
-import { MeCab } from "https://deno.land/x/deno_mecab/mod.ts";
+import MeCab from "https://deno.land/x/deno_mecab@v1.2.2/mod.ts";
 
 const mecab = new MeCab(["mecab"]);
 
