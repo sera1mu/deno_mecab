@@ -28,31 +28,23 @@ export default class MeCab {
       stdin: "piped",
     };
 
-    // Initialize TextEncoder and TextDecoder
-    const encoder = new TextEncoder();
-    const decoder = new TextDecoder();
-
-    // Create process
     const process = Deno.run(options);
 
     // Write text to stdin
-    await process.stdin?.write(encoder.encode(text));
+    await process.stdin?.write(new TextEncoder().encode(text));
     process.stdin?.close();
 
-    // Get status and stdout
     const [{ code }, stdout] = await Promise.all([
       process.status(),
       process.output(),
     ]);
     process.close();
 
-    // Check process exited with exit code 0
     if (code !== 0) {
       throw stdout;
     }
 
-    // Return process stdout
-    const decodedOutput = decoder.decode(stdout);
+    const decodedOutput = new TextDecoder().decode(stdout);
     return decodedOutput;
   }
 
@@ -61,7 +53,6 @@ export default class MeCab {
    * Requires `allow-run` permission.
    */
   async parse(text: string): Promise<ParsedWord[]> {
-    // Run MeCab
     const result = await this.runMeCab(text);
 
     // Remove not needed symbol
@@ -69,9 +60,9 @@ export default class MeCab {
       .replace(/\nEOS\n/, "")
       .replace(/\t/g, ",")
       .split("\n");
+
     const parsedWords: ParsedWord[] = [];
 
-    // Edit result
     for (const line of splitedResult) {
       const splitedLine = line.split(",");
       const word: ParsedWord = {
@@ -93,14 +84,13 @@ export default class MeCab {
    * Requires `allow-run` permission.
    */
   async dump(text: string): Promise<ParsedDumpWord[]> {
-    // Run MeCab
     const result = await this.runMeCab(text, ["-Odump"]);
 
     // Remove not needed symbol
     const splitedResult = result.replace(/\n$/, "").split("\n");
+
     const parsedWords: ParsedDumpWord[] = [];
 
-    // Edit result
     for (const line of splitedResult) {
       const splitedLine = line.split(" ");
       const splitedLineFeature = splitedLine[2].split(",");
@@ -141,10 +131,8 @@ export default class MeCab {
    * Requires `allow-run` permission.
    */
   async wakati(text: string): Promise<string[]> {
-    // Run MeCab
     const result = await this.runMeCab(text, ["-Owakati"]);
 
-    // Edit result
     const editedResult = result.split(" ");
     editedResult.pop();
 
@@ -156,10 +144,8 @@ export default class MeCab {
    * Requires `allow-run` permission.
    */
   async yomi(text: string): Promise<string> {
-    // Run MeCab
     const result = await this.runMeCab(text, ["-Oyomi"]);
 
-    // Edit result
     const editedResult = result.replace(/ \n/g, "");
     return editedResult;
   }
